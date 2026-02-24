@@ -1,0 +1,17 @@
+---
+interface Props { phone?: string; size?: 'default' | 'hero'; }
+const { phone = '(850) 403-9797', size = 'default' } = Astro.props;
+const phoneDigits = phone.replace(/\D/g, '');
+const isHero = size === 'hero';
+---
+
+<div class:list={['phone-cta', { 'phone-cta--hero': isHero }]}>
+  <a href={`tel:+1${phoneDigits}`} class:list={['btn','btn--phone',{'btn--lg':isHero}]}>📞 Call Now: {phone}</a>
+  <a href={`sms:+1${phoneDigits}?body=Hi%2C%20I%20need%20HVAC%20help.`} class:list={['btn','btn--secondary',{'btn--lg':isHero}]}>💬 Text Us</a>
+  <a href="/service/" class:list={['btn','btn--outline',{'btn--lg':isHero}]} style={isHero?'border-color:rgba(255,255,255,0.3);color:white;':''}>📋 Request Service</a>
+</div>
+<style>
+  .phone-cta{display:flex;flex-wrap:wrap;gap:var(--space-md)}
+  .phone-cta--hero{margin-bottom:var(--space-xl)}
+  @media(max-width:768px){.phone-cta{flex-direction:column}.phone-cta .btn{width:100%;justify-content:center}}
+</style>
