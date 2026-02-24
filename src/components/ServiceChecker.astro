@@ -1,0 +1,76 @@
+---
+import fl01Zips from '../data/fl01-zips.json';
+---
+
+<div class="checker" id="service-checker">
+  <div class="checker__header">
+    <h2>Check Your Coverage</h2>
+    <p>Enter your ZIP code to verify we service your area.</p>
+  </div>
+  <div class="checker__input-wrap">
+    <input type="text" id="zip-input" placeholder="Enter ZIP" maxlength="5" inputmode="numeric" pattern="[0-9]*" autocomplete="postal-code" aria-label="ZIP code"/>
+    <button id="zip-check-btn" class="btn btn--primary">Check Coverage</button>
+  </div>
+  <div class="checker__result" id="result-covered" hidden>
+    <div class="checker__badge checker__badge--yes">✓ We service your area!</div>
+    <p id="result-city-name"></p>
+    <div class="checker__actions">
+      <a href="tel:+18504039797" class="btn btn--phone btn--lg">📞 Call Now: (850) 403-9797</a>
+      <a href="/service/" class="btn btn--secondary">📋 Request Service</a>
+      <a href="#" class="btn btn--outline" id="result-details-link">→ See local details</a>
+    </div>
+  </div>
+  <div class="checker__result" id="result-not-covered" hidden>
+    <div class="checker__badge checker__badge--expand">We're expanding to your area</div>
+    <p>Leave your email for launch notification, or call <a href="tel:+18504039797">(850) 403-9797</a> — we may still be able to help.</p>
+    <div class="checker__email-capture">
+      <input type="email" id="notify-email" placeholder="your@email.com" aria-label="Email"/>
+      <button class="btn btn--primary" id="notify-btn">Notify Me</button>
+    </div>
+  </div>
+  <div class="checker__result" id="result-invalid" hidden>
+    <p class="checker__error">Please enter a valid 5-digit ZIP code.</p>
+  </div>
+</div>
+
+<script define:vars={{ zips: fl01Zips }}>
+  const input=document.getElementById('zip-input'),btn=document.getElementById('zip-check-btn');
+  const rc=document.getElementById('result-covered'),rn=document.getElementById('result-not-covered'),ri=document.getElementById('result-invalid');
+  const cn=document.getElementById('result-city-name'),dl=document.getElementById('result-details-link');
+  function hide(){rc.hidden=rn.hidden=ri.hidden=true}
+  function check(){
+    const z=input.value.trim();hide();
+    if(!/^\d{5}$/.test(z)){ri.hidden=false;return}
+    const m=zips.find(x=>x.zip===z);
+    if(m){
+      cn.textContent=`Coverage confirmed for ${m.city}, FL ${z}`;
+      dl.href=`/florida/${m.city.toLowerCase().replace(/\s+/g,'-').replace(/'/g,'')}/hvac/ac-repair/${z}/`;
+      rc.hidden=false;
+      if(window.plausible)plausible('zip_valid',{props:{zip:z,city:m.city}});
+    }else{
+      rn.hidden=false;
+      if(window.plausible)plausible('zip_not_covered',{props:{zip:z}});
+    }
+  }
+  btn.addEventListener('click',check);
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
+  input.addEventListener('input',()=>{input.value=input.value.replace(/\D/g,'')});
+</script>
+
+<style>
+  .checker{background:var(--white);border-radius:var(--radius-lg);padding:var(--space-2xl);box-shadow:var(--shadow-lg);max-width:600px}
+  .checker__header{margin-bottom:var(--space-lg)}
+  .checker__header p{color:var(--text-secondary)}
+  .checker__input-wrap{display:flex;gap:var(--space-sm);margin-bottom:var(--space-lg)}
+  .checker__input-wrap input{flex:1;padding:var(--space-md);border:2px solid var(--slate-200);border-radius:var(--radius-sm);font-size:1.125rem;text-align:center;font-family:var(--font-body);letter-spacing:0.1em}
+  .checker__input-wrap input:focus{outline:none;border-color:var(--orange-500);box-shadow:0 0 0 3px rgba(249,115,22,0.15)}
+  .checker__result{margin-top:var(--space-lg)}
+  .checker__badge{display:inline-block;padding:var(--space-xs) var(--space-md);border-radius:999px;font-weight:700;font-size:0.95rem;margin-bottom:var(--space-md)}
+  .checker__badge--yes{background:#DCFCE7;color:var(--green-600)}
+  .checker__badge--expand{background:#FEF3C7;color:#92400E}
+  .checker__actions{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-top:var(--space-md)}
+  .checker__email-capture{display:flex;gap:var(--space-sm);margin:var(--space-md) 0}
+  .checker__email-capture input{flex:1;padding:var(--space-sm) var(--space-md);border:2px solid var(--slate-200);border-radius:var(--radius-sm);font-size:1rem;font-family:var(--font-body)}
+  .checker__error{color:var(--red-500);font-weight:600}
+  @media(max-width:768px){.checker{padding:var(--space-lg)}.checker__input-wrap,.checker__actions,.checker__email-capture{flex-direction:column}.checker__actions .btn{width:100%;justify-content:center}}
+</style>
