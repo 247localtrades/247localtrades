@@ -1,0 +1,91 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  noindex?: boolean;
+  schema?: object;
+}
+const { title, description, canonical, noindex = false, schema } = Astro.props;
+const siteUrl = 'https://247localtrades.com';
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalUrl}>
+  {noindex
+    ? <meta name="robots" content="noindex, nofollow">
+    : <meta name="robots" content="index, follow">
+  }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+  <script defer data-domain="247localtrades.com" src="https://plausible.io/js/script.js"></script>
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalUrl}>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <div class="utility-header">
+    <div class="container">
+      Licensed &amp; Insured · Background Checked · 24/7 ·
+      <a href="tel:+18504039797">(850) 403-9797</a>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="site-header__logo">247<span>Local</span>Trades</a>
+      <nav class="site-header__nav">
+        <a href="/service/">Request Service</a>
+        <a href="/vendors/">For Contractors</a>
+        <a href="/about/">About</a>
+        <a href="tel:+18504039797" class="btn btn--phone">📞 (850) 403-9797</a>
+      </nav>
+    </div>
+  </header>
+  <main><slot /></main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div>
+          <div class="site-footer__brand">247<span>Local</span>Trades</div>
+          <p>We've got your neighborhood covered. Verified local HVAC contractors in Northwest Florida.</p>
+          <p style="margin-top:var(--space-md)"><a href="tel:+18504039797" class="btn btn--phone">📞 (850) 403-9797</a></p>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/florida/pensacola/hvac/">HVAC Repair</a></li>
+            <li><a href="/service/">Request Service</a></li>
+            <li><a href="/florida/">Service Areas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/vendors/">For Contractors</a></li>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__legal">
+        <span>&copy; {new Date().getFullYear()} 247 Local Trades. All rights reserved.</span>
+        <span>Calls may be recorded for training and quality assurance.</span>
+      </div>
+    </div>
+  </footer>
+  <div class="sticky-phone"><a href="tel:+18504039797">📞 Call Now — (850) 403-9797</a></div>
+  <style is:global>@import '../styles/global.css';</style>
+</body>
+</html>
