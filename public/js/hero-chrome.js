@@ -72,7 +72,7 @@
 
   // ---- Page-wide glint sweep ----
   var SWEEP = 11000;  // ms to cross viewport
-  var PAUSE = 1500;  // ms between sweeps
+  var PAUSE = 1500;  // ms between sweeps (2x freq)
   var OVER  = 300;   // px overshoot past edges
   var sweepStart = null;
   var pausing = false;
