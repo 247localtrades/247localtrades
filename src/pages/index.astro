@@ -14,7 +14,7 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroCTA from '../components/HeroCTA.astro';
-import PhoneCTA from '../components/PhoneCTA.astro';
+
 import ServiceChecker from '../components/ServiceChecker.astro';
 
 const schema = {
@@ -98,7 +98,7 @@ const schema = {
     <div class="container">
       <h2 style="color:var(--white);margin-bottom:var(--space-md)">Your AC Can't Wait. Neither Can We.</h2>
       <p style="color:var(--slate-600);max-width:500px;margin:0 auto var(--space-xl)">Call, text, or request service online.</p>
-      <div style="display:flex;justify-content:center"><PhoneCTA size="hero" /></div>
+      <HeroCTA />
     </div>
   </section>
 
