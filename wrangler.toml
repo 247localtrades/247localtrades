@@ -1,0 +1,38 @@
+# 247LocalTrades FL-01 Pilot — Cloudflare Pages Configuration
+# Docs: https://developers.cloudflare.com/pages/configuration/wrangler-configuration/
+# Version: 2.0 | February 2026
+
+name                = "247lt-fl01"
+compatibility_date  = "2026-02-23"
+
+[vars]
+# Public vars (safe to commit)
+TRACKING_NUMBER_HVAC      = "(850) 403-9797"
+TRACKING_NUMBER_PLUMBING  = "(850) 403-9798"
+TRACKING_NUMBER_ELECTRICAL = "(850) 403-9799"
+TRACKING_NUMBER_ROOFING   = "(850) 403-9800"
+SITE_VERSION              = "2.0"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SECRETS: Set these in Cloudflare Dashboard
+#   Pages → Settings → Environment Variables → Add Variable (mark as Secret)
+#   DO NOT put actual values in this file — it is committed to Git.
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Required secrets:
+#   SUPABASE_URL          = https://[project-ref].supabase.co
+#   SUPABASE_ANON_KEY     = eyJhbGci...
+#   OPENAI_API_KEY        = sk-...
+#   GHL_WEBHOOK_URL       = https://hooks.zapier.com/... (or GHL native webhook)
+#
+# Optional (add when features are enabled):
+#   CALLRAIL_API_KEY      = For programmatic CallRail management
+#   STRIPE_SECRET_KEY     = When billing automation is implemented
+#   PLAUSIBLE_API_KEY     = For pulling analytics into daily_stats
+
+[[d1_databases]]
+# D1 not currently used — Supabase is primary DB for pilot.
+# Uncomment if caching frequently-read ZIP data at edge becomes necessary.
+# binding = "ZIP_CACHE"
+# database_name = "247lt-zip-cache"
+# database_id = "[D1-DATABASE-ID]"
