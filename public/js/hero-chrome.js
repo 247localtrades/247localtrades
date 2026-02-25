@@ -1,5 +1,5 @@
 /**
- * hero-chrome.js — Mouse-tracked reflections + page-wide glint sweep
+ * hero-chrome.js â Mouse-tracked reflections + page-wide glint sweep
  * 
  * WHAT IT DOES:
  *   1. Tracks mouse position and maps it to reflection coordinates
@@ -71,8 +71,8 @@
 
 
   // ---- Page-wide glint sweep ----
-  var SWEEP = 7000;  // ms to cross viewport
-  var PAUSE = 6000;  // ms between sweeps
+  var SWEEP = 11000;  // ms to cross viewport
+  var PAUSE = 3000;  // ms between sweeps
   var OVER  = 300;   // px overshoot past edges
   var sweepStart = null;
   var pausing = false;
