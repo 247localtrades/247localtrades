@@ -76,6 +76,16 @@
   --shadow-lg: 0 8px 30px rgba(42,49,59,0.16);
   --shadow-cta: 0 4px 14px rgba(249,115,22,0.35);
 }
+/* Override: nav-cta is an <a> inside site-header__nav — needs specificity boost */
+.site-header__nav a.nav-cta,
+.site-footer a.nav-cta {
+  color: #ffffff !important;
+  transition: color 0.2s ease;
+}
+.site-header__nav a.nav-cta:hover,
+.site-footer a.nav-cta:hover {
+  color: #fce88a !important;
+}
 
 /* Reset */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
