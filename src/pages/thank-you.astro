@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Request Received â€” 247 Local Trades" description="Your service request has been received." noindex={true}>
+  <section class="section" style="text-align:center;min-height:60vh;display:flex;align-items:center">
+    <div class="container" style="max-width:600px">
+      <div style="font-size:3rem;margin-bottom:var(--space-lg)">âœ…</div>
+      <h1>Request Received</h1>
+      <p style="font-size:1.125rem;color:var(--text-secondary);margin:var(--space-md) 0 var(--space-xl)">Your request has been sent to a verified contractor. Emergencies: expect a call within <strong>30 minutes</strong>. Non-urgent: within <strong>2 hours</strong>.</p>
+      <div class="card" style="text-align:left;margin-bottom:var(--space-xl)">
+        <h3 style="margin-bottom:var(--space-md)">What Happens Next</h3>
+        <ol style="padding-left:var(--space-xl);line-height:2.2">
+          <li>Contractor receives your request with full details</li>
+          <li>They call or text you to confirm</li>
+          <li>You schedule a time that works</li>
+          <li>Contractor arrives, diagnoses, and quotes before starting</li>
+        </ol>
+      </div>
+      <p style="color:var(--text-secondary);margin-bottom:var(--space-md)">Haven't heard back?</p>
+      <a href="tel:+18504039797" class="btn btn--phone btn--lg">ðŸ“ž (850) 403-9797</a>
+    </div>
+  </section>
+</BaseLayout>

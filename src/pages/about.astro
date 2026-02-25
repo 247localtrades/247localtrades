@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhoneCTA from '../components/PhoneCTA.astro';
+---
+
+<BaseLayout title="About â€” 247 Local Trades" description="We connect Northwest Florida homeowners with licensed, insured, background-checked HVAC contractors.">
+  <section class="hero" style="padding:var(--space-2xl) 0"><div class="container">
+    <h1 style="color:var(--white)">About 247 Local Trades</h1>
+    <p class="hero__subtitle">We're building the most trusted way for homeowners to find verified local contractors â€” starting in Northwest Florida.</p>
+  </div></section>
+  <section class="section"><div class="container" style="max-width:720px">
+    <h2>Why We Exist</h2>
+    <p>Your AC dies at midnight in July. You search "AC repair near me" and get a page of ads â€” but how do you know who's licensed? Who's local? Who won't no-show?</p>
+    <p>We started 247 Local Trades because homeowners deserve better than a gamble during an emergency. Every contractor in our network is verified before they receive a single call.</p>
+    <h2 style="margin-top:var(--space-2xl)">How We're Different</h2>
+    <p>Most lead gen companies sell the same lead to five contractors. We match each homeowner with a single verified contractor based on ZIP code. The contractor gets an exclusive lead. The homeowner gets one qualified professional.</p>
+    <h2 style="margin-top:var(--space-2xl)">Verification Process</h2>
+    <ul style="margin:var(--space-md) 0;padding-left:var(--space-xl);line-height:2">
+      <li><strong>State license</strong> â€” confirmed through Florida DBPR</li>
+      <li><strong>$1M+ liability insurance</strong> â€” certificate on file</li>
+      <li><strong>Workers' comp</strong> â€” active coverage</li>
+      <li><strong>Background checks</strong> â€” all field technicians</li>
+      <li><strong>4.0+ Google rating</strong> â€” real customer reviews</li>
+    </ul>
+    <h2 style="margin-top:var(--space-2xl)">Currently Serving</h2>
+    <p>Live in <strong>Northwest Florida</strong> â€” 20 ZIP codes across Pensacola, Gulf Breeze, Navarre, Milton, Pace, and Cantonment. HVAC first, more trades coming soon.</p>
+    <div style="margin-top:var(--space-2xl)"><PhoneCTA />
+    <p style="margin-top:var(--space-md);color:var(--text-secondary);font-size:0.9rem">General inquiries: <a href="mailto:info@247localtrades.com" style="color:var(--orange-600)">info@247localtrades.com</a></p></div>
+  </div></section>
+</BaseLayout>

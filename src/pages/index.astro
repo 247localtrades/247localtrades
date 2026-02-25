@@ -1,5 +1,19 @@
 ---
+/**
+ * index.astro — Homepage
+ * Version: 2.0
+ * 
+ * CHANGES FROM v1.0:
+ *   - HeroCTA replaces PhoneCTA in hero (chrome metal bars)
+ *   - Tagline uses new certified badge format
+ *   - Trust badges below CTAs (green checks)
+ *   - Recording disclosure in hero
+ *   - PhoneCTA still used in bottom CTA section (non-hero context)
+ *   - Brand colors: teal/blue (was orange)
+ */
+
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroCTA from '../components/HeroCTA.astro';
 import PhoneCTA from '../components/PhoneCTA.astro';
 import ServiceChecker from '../components/ServiceChecker.astro';
 
@@ -17,18 +31,24 @@ const schema = {
 <BaseLayout title="247 Local Trades — Verified HVAC Contractors in Northwest Florida" description="24/7 emergency HVAC repair in Pensacola, Gulf Breeze, Milton, Navarre & Pace. Licensed, insured contractors. Call (850) 403-9797." schema={schema}>
 
   <section class="hero">
-    <div class="container"><div class="hero__content">
-      <span class="hero__tagline">We've got your neighborhood covered</span>
+    <div class="hero__content">
+      <span class="hero__tagline">247LocalTrades Certified — We've got your neighborhood covered</span>
+
       <h1>Emergency HVAC Service.<br>Verified Local Contractors.</h1>
-      <p class="hero__subtitle">Your AC went out. You need someone you can trust — fast. We connect you with licensed, insured, background-checked HVAC contractors in your ZIP code.</p>
-      <PhoneCTA size="hero" />
+
+      <p class="hero__subtitle">Your AC went out. You need someone you can trust — fast. We connect you with pre-verified, licensed contractors in minutes, not hours.</p>
+
+      <HeroCTA />
+
       <div class="hero__trust">
-        <span class="hero__trust-item">✓ Licensed & Insured</span>
-        <span class="hero__trust-item">✓ Background Checked</span>
-        <span class="hero__trust-item">✓ Available 24/7</span>
-        <span class="hero__trust-item">✓ No Upfront Fees</span>
+        <span class="hero__trust-item"><span class="check">✓</span> Licensed</span>
+        <span class="hero__trust-item"><span class="check">✓</span> Insured</span>
+        <span class="hero__trust-item"><span class="check">✓</span> Background Checked</span>
+        <span class="hero__trust-item"><span class="check">✓</span> 247LT Certified</span>
       </div>
-    </div></div>
+
+      <div class="disclosure">Calls may be recorded for training and quality assurance.</div>
+    </div>
   </section>
 
   <section class="section--alt">
@@ -48,6 +68,37 @@ const schema = {
         <p style="font-size:0.9rem;color:var(--text-secondary)"><strong>Cities:</strong> Pensacola, Gulf Breeze, Navarre, Milton, Pace, Cantonment</p>
       </div>
       <ServiceChecker />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:var(--space-2xl)">How It Works</h2>
+      <div class="cards-grid">
+        <div class="card"><div class="card__icon">📞</div><h3>1. Contact Us</h3><p>Call, text (850) 403-9797, or fill out our online form.</p></div>
+        <div class="card"><div class="card__icon">🔍</div><h3>2. We Match You</h3><p>We connect you with a licensed contractor who serves your ZIP code.</p></div>
+        <div class="card"><div class="card__icon">🔧</div><h3>3. Get It Fixed</h3><p>Your contractor arrives, diagnoses, and gets your system running.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:var(--space-2xl)">Why Homeowners Trust Us</h2>
+      <div class="cards-grid">
+        <div class="card"><div class="card__icon">🛡️</div><h3>Verified Credentials</h3><p>Active FL license, $1M+ insurance, workers' comp — confirmed, not self-reported.</p></div>
+        <div class="card"><div class="card__icon">👤</div><h3>Background Checked</h3><p>Every technician entering your home has passed a background check.</p></div>
+        <div class="card"><div class="card__icon">📍</div><h3>Truly Local</h3><p>Our contractors live and work in your community.</p></div>
+        <div class="card"><div class="card__icon">⏰</div><h3>24/7 Emergency</h3><p>AC dies at 2 AM in July? We've got you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" style="text-align:center">
+    <div class="container">
+      <h2 style="color:var(--white);margin-bottom:var(--space-md)">Your AC Can't Wait. Neither Can We.</h2>
+      <p style="color:var(--slate-600);max-width:500px;margin:0 auto var(--space-xl)">Call, text, or request service online.</p>
+      <div style="display:flex;justify-content:center"><PhoneCTA size="hero" /></div>
     </div>
   </section>
 

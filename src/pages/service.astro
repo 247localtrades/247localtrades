@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import fl01Zips from '../data/fl01-zips.json';
+---
+
+<BaseLayout title="Request HVAC Service â€” 247 Local Trades" description="Request emergency HVAC repair in Northwest Florida. Licensed contractors in Pensacola, Gulf Breeze, Milton, Navarre & Pace.">
+
+  <section class="hero" style="padding:var(--space-2xl) 0">
+    <div class="container">
+      <h1 style="color:var(--white)">Request Service</h1>
+      <p class="hero__subtitle">Fill out the form and a verified contractor will contact you â€” usually within 30 minutes for emergencies.</p>
+      <p style="color:var(--slate-300)">Need help now? Call <a href="tel:+18504039797" style="color:var(--orange-500);font-weight:700">(850) 403-9797</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:680px">
+      <form id="service-form" class="card" style="padding:var(--space-2xl)" action="https://hooks.gohighlevel.com/YOUR_WEBHOOK_ID" method="POST">
+
+        <div class="form-group">
+          <label for="zip">ZIP Code *</label>
+          <input type="text" id="zip" name="zip" required maxlength="5" inputmode="numeric" pattern="[0-9]{5}" placeholder="e.g. 32503" autocomplete="postal-code">
+          <div id="zip-status" style="margin-top:var(--space-xs);font-size:0.85rem"></div>
+        </div>
+
+        <div id="form-fields" style="display:none">
+          <hr style="border:none;border-top:1px solid var(--slate-200);margin:var(--space-lg) 0">
+          <h3 style="font-size:1rem;color:var(--slate-500);margin-bottom:var(--space-md)">YOUR INFO</h3>
+          <div class="form-group"><label for="name">Name *</label><input type="text" id="name" name="name" required minlength="2" autocomplete="name"></div>
+          <div class="form-group"><label for="phone">Phone *</label><input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(850) 555-1234"></div>
+          <div class="form-group"><label for="email">Email (optional)</label><input type="email" id="email" name="email" autocomplete="email"></div>
+
+          <hr style="border:none;border-top:1px solid var(--slate-200);margin:var(--space-lg) 0">
+          <h3 style="font-size:1rem;color:var(--slate-500);margin-bottom:var(--space-md)">SERVICE ADDRESS</h3>
+          <div class="form-group"><label for="street">Street Address *</label><input type="text" id="street" name="street" required minlength="5" autocomplete="street-address"></div>
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--space-md)">
+            <div class="form-group"><label for="city">City *</label><input type="text" id="city" name="city" required readonly style="background:var(--slate-100)"></div>
+            <div class="form-group"><label for="state">State *</label><input type="text" id="state" name="state" value="FL" readonly style="background:var(--slate-100)"></div>
+          </div>
+
+          <hr style="border:none;border-top:1px solid var(--slate-200);margin:var(--space-lg) 0">
+          <h3 style="font-size:1rem;color:var(--slate-500);margin-bottom:var(--space-md)">SERVICE DETAILS</h3>
+          <div class="form-group"><label for="service_type">Service Needed *</label>
+            <select id="service_type" name="service_type" required>
+              <option value="">Select...</option>
+              <option value="ac_repair">AC Repair</option>
+              <option value="heating_repair">Heating Repair</option>
+              <option value="ac_install">AC Installation</option>
+              <option value="maintenance">Maintenance</option>
+              <option value="duct_work">Duct Work</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>How Urgent? *</label>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-top:var(--space-xs)">
+              <label class="radio-card"><input type="radio" name="urgency" value="emergency" required><span>ðŸš¨ Emergency</span></label>
+              <label class="radio-card"><input type="radio" name="urgency" value="today"><span>Today</span></label>
+              <label class="radio-card"><input type="radio" name="urgency" value="this_week"><span>This Week</span></label>
+              <label class="radio-card"><input type="radio" name="urgency" value="flexible"><span>Flexible</span></label>
+            </div>
+          </div>
+          <div class="form-group"><label for="description">Describe Issue (optional)</label><textarea id="description" name="description" maxlength="500" placeholder="What's happening?"></textarea></div>
+          <div class="form-group"><label>Preferred Contact *</label>
+            <div style="display:flex;gap:var(--space-sm);margin-top:var(--space-xs)">
+              <label class="radio-card"><input type="radio" name="contact_pref" value="call" required><span>ðŸ“ž Call</span></label>
+              <label class="radio-card"><input type="radio" name="contact_pref" value="text"><span>ðŸ’¬ Text</span></label>
+              <label class="radio-card"><input type="radio" name="contact_pref" value="either"><span>Either</span></label>
+            </div>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-secondary);margin:var(--space-lg) 0 var(--space-md)">ðŸ”’ Your info is only shared with our licensed local partner. <a href="/privacy/" style="color:var(--orange-600)">Privacy Policy</a></p>
+          <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center">Submit Request</button>
+        </div>
+
+        <div id="zip-not-covered" style="display:none;margin-top:var(--space-lg)">
+          <div style="background:#FEF3C7;color:#92400E;padding:var(--space-md);border-radius:var(--radius-sm);margin-bottom:var(--space-md)">We don't service that ZIP yet.</div>
+          <p>Call <a href="tel:+18504039797" style="color:var(--orange-600);font-weight:700">(850) 403-9797</a> â€” we may connect you with someone nearby.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script define:vars={{ zips: fl01Zips }}>
+  const zi=document.getElementById('zip'),zs=document.getElementById('zip-status'),ff=document.getElementById('form-fields'),nc=document.getElementById('zip-not-covered'),cf=document.getElementById('city');
+  zi.addEventListener('input',()=>{
+    zi.value=zi.value.replace(/\D/g,'');
+    const z=zi.value;
+    if(z.length===5){const m=zips.find(x=>x.zip===z);if(m){zs.innerHTML='<span style="color:var(--green-600);font-weight:600">âœ“ We service '+m.city+', FL</span>';cf.value=m.city;ff.style.display='block';nc.style.display='none'}else{zs.innerHTML='';ff.style.display='none';nc.style.display='block'}}
+    else{zs.innerHTML='';ff.style.display='none';nc.style.display='none'}
+  });
+</script>
+
+<style>
+  .radio-card{display:flex;align-items:center;gap:var(--space-xs);padding:var(--space-sm) var(--space-md);border:2px solid var(--slate-200);border-radius:var(--radius-sm);cursor:pointer;transition:all 0.2s;font-size:0.9rem;font-weight:500}
+  .radio-card:has(input:checked){border-color:var(--orange-500);background:rgba(249,115,22,0.05)}
+  .radio-card input{width:16px;height:16px;accent-color:var(--orange-500)}
+</style>

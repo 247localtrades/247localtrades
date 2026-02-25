@@ -1,0 +1,82 @@
+---
+/**
+ * HeroCTA.astro — Chrome Metal Bar CTAs
+ * Replaces PhoneCTA.astro in hero sections.
+ * 
+ * HIERARCHY (per D-LEAD-01 / J-02):
+ *   📋 Request Service  → Gold bar (primary)
+ *   📞 Call Live Agent   → Steel bar (secondary)  
+ *   💬 Text Us           → Teal bar (tertiary)
+ *
+ * REQUIRES: 
+ *   - src/styles/chrome-bars.css (loaded via global.css)
+ *   - public/js/hero-chrome.js (loaded by this component)
+ *
+ * ACCESSIBILITY:
+ *   - Hierarchy via lightness + form (deuteranopia-safe)
+ *   - focus-visible outline on all bars
+ *   - Semantic <a> elements with proper hrefs
+ */
+
+interface Props {
+  phone?: string;
+  serviceUrl?: string;
+}
+
+const { phone = '(850) 403-9797', serviceUrl = '/service/' } = Astro.props;
+const phoneDigits = phone.replace(/\D/g, '');
+---
+
+<!-- SVG stamp filter for recessed text effect -->
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <filter id="stamp" x="-5%" y="-20%" width="110%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.25" result="b"/>
+      <feOffset in="b" dx="0" dy="1" result="sh"/>
+      <feFlood flood-color="#000" flood-opacity="0.6" result="sc"/>
+      <feComposite in="sc" in2="sh" operator="in" result="shadow"/>
+      <feOffset in="b" dx="0" dy="-0.6" result="lh"/>
+      <feFlood flood-color="#fff" flood-opacity="0.55" result="lc"/>
+      <feComposite in="lc" in2="lh" operator="in" result="light"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="light"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<div class="brow" id="brow">
+  <!-- GOLD — Request Service (primary) -->
+  <a href={serviceUrl} class="bar bar--gold">
+    <div class="noise"></div>
+    <div class="brush"></div>
+    <div class="spec"></div>
+    <div class="glint"></div>
+    <span class="i" style="filter:url(#stamp)">📋</span>
+    <span class="t" style="filter:url(#stamp)">Request Service</span>
+  </a>
+
+  <!-- STEEL — Call Live Agent (secondary) -->
+  <a href={`tel:+1${phoneDigits}`} class="bar bar--steel">
+    <div class="noise"></div>
+    <div class="brush"></div>
+    <div class="spec"></div>
+    <div class="glint"></div>
+    <span class="i" style="filter:url(#stamp)">📞</span>
+    <span class="t" style="filter:url(#stamp)">Call Live Agent</span>
+  </a>
+
+  <!-- TEAL — Text Us (tertiary) -->
+  <a href={`sms:+1${phoneDigits}?body=Hi%2C%20I%20need%20help%20with%20my%20HVAC.`} class="bar bar--teal">
+    <div class="noise"></div>
+    <div class="brush"></div>
+    <div class="spec"></div>
+    <div class="glint"></div>
+    <span class="i" style="filter:url(#stamp)">💬</span>
+    <span class="t" style="filter:url(#stamp)">Text Us</span>
+  </a>
+</div>
+
+<script src="/js/hero-chrome.js"></script>
