@@ -61,7 +61,7 @@ Licensed &amp; Insured <img src="/icon.svg" alt="" aria-hidden="true" style="wid
   <!-- Site header – dark glassmorphism -->
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="/" class="site-header__logo"><img src="/logo.svg" alt="247 Local Trades" style="height:44px;width:auto;display:block;"></a>
+      <a href="/" class="site-header__logo"><picture><source media="(max-width:768px)" srcset="/logo-mobile.svg"><img src="/logo.svg" alt="247 Local Trades" style="height:44px;width:auto;display:block;"></picture></a>
       <nav class="site-header__nav">
         <a href="/service/">Request Service</a>
         <a href="/vendors/">For Contractors</a>
@@ -120,7 +120,7 @@ Licensed &amp; Insured <img src="/icon.svg" alt="" aria-hidden="true" style="wid
 
   <style is:global>@import '../styles/global.css';
   /* nav-cta text: white default, gold on hover */
-  .nav-cta { color: #ffffff; }
+  .nav-cta { color: #ffffff; white-space: nowrap; }
   .nav-cta .nav-text { color: inherit; }
 .nav-cta:hover { color: #fce88a; transition: color 0.2s ease; }
   /* header height with tagline */
@@ -130,6 +130,6 @@ Licensed &amp; Insured <img src="/icon.svg" alt="" aria-hidden="true" style="wid
     .utility-header { display: none; }
     .site-header__logo img { height: 34px; }
     .site-header__inner { height: 56px; }
-  }</style>
+  }
 </body>
 </html>
