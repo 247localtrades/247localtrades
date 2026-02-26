@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 44" width="230" height="44">
+  <!-- Icon: outer grey ring -->
+  <circle cx="22" cy="22" r="20" fill="none" stroke="#5a6478" stroke-width="3"/>
+  <!-- Icon: inner teal ring with gap at bottom -->
+  <circle cx="22" cy="22" r="15" fill="none" stroke="#63D0CA" stroke-width="4"
+    stroke-dasharray="84 11" stroke-dashoffset="-3" stroke-linecap="round"/>
+  <!-- Icon: LT text -->
+  <text x="22" y="27" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif"
+    font-weight="800" font-size="13" fill="#ffffff" letter-spacing="-0.3">LT</text>
+  <!-- Icon: white dot at bottom of ring -->
+  <circle cx="22" cy="39" r="2.2" fill="#c8d6e8"/>
+
+  <!-- Wordmark: "247" white bold -->
+  <text x="52" y="29" font-family="system-ui,-apple-system,sans-serif"
+    font-weight="800" font-size="21" fill="#ffffff" letter-spacing="-0.5">247</text>
+  <!-- Wordmark: "Local Trades" light blue -->
+  <text x="93" y="29" font-family="system-ui,-apple-system,sans-serif"
+    font-weight="500" font-size="21" fill="#73B0DC" letter-spacing="-0.2">Local Trades</text>
+</svg>
