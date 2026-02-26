@@ -61,25 +61,23 @@ Licensed &amp; Insured <img src="/icon.svg" alt="" aria-hidden="true" style="wid
   <!-- Site header – dark glassmorphism -->
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="/" class="site-header__logo" aria-label="247 Local Trades">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 54" height="48" style="display:block;overflow:visible;">
-          <!-- Icon: outer grey ring -->
-          <circle cx="25" cy="25" r="22" fill="none" stroke="#5a6478" stroke-width="3"/>
-          <!-- Icon: inner teal ring with bottom gap -->
-          <circle cx="25" cy="25" r="16.5" fill="none" stroke="#63D0CA" stroke-width="4.5" stroke-dasharray="93 12" stroke-dashoffset="-3" stroke-linecap="round"/>
-          <!-- LT text -->
-          <text x="25" y="31" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="15" fill="#ffffff" letter-spacing="-0.5">LT</text>
-          <!-- white dot -->
-          <circle cx="25" cy="44" r="2.5" fill="#c8d6e8"/>
-          <!-- 247 -->
-          <text x="57" y="26" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="-0.5">247</text>
-          <!-- Local Trades -->
-          <text x="102" y="26" font-family="system-ui,-apple-system,sans-serif" font-weight="500" font-size="22" fill="#73B0DC" letter-spacing="-0.2">Local Trades</text>
-          <!-- divider -->
-          <line x1="57" y1="31" x2="338" y2="31" stroke="rgba(99,208,202,0.3)" stroke-width="0.7"/>
-          <!-- tagline — native rendered, crisp white -->
-          <text x="57" y="47" font-family="system-ui,-apple-system,sans-serif" font-weight="500" font-size="12" fill="#ffffff" letter-spacing="0.05em">WE'VE GOT YOUR NEIGHBORHOOD COVERED.</text>
-        </svg>
+      <a href="/" class="site-header__logo">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <svg width="50" height="50" viewBox="0 0 50 50" style="flex-shrink:0;" aria-hidden="true">
+            <circle cx="25" cy="25" r="22" fill="none" stroke="#5a6478" stroke-width="3"/>
+            <circle cx="25" cy="25" r="16.5" fill="none" stroke="#63D0CA" stroke-width="4.5" stroke-dasharray="93 12" stroke-dashoffset="-3" stroke-linecap="round"/>
+            <text x="25" y="31" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="15" fill="#ffffff" letter-spacing="-0.5">LT</text>
+            <circle cx="25" cy="44" r="2.5" fill="#c8d6e8"/>
+          </svg>
+          <div style="display:flex;flex-direction:column;gap:0;line-height:1;">
+            <div style="display:flex;align-items:baseline;gap:5px;">
+              <span style="font-size:22px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;line-height:1;">247</span>
+              <span style="font-size:22px;font-weight:500;color:#73B0DC;letter-spacing:-0.2px;line-height:1;">Local Trades</span>
+            </div>
+            <div style="height:1px;background:rgba(99,208,202,0.3);margin:3px 0 4px;"></div>
+            <span style="font-size:10px;font-weight:600;color:#ffffff;letter-spacing:0.1em;line-height:1;text-transform:uppercase;">We&apos;ve got your neighborhood covered.</span>
+          </div>
+        </div>
       </a>
       <nav class="site-header__nav">
         <a href="/service/">Request Service</a>
