@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#0B1A2E"/>
-  <text x="16" y="22" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="14" fill="#F97316">247</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#4a5568" stroke-width="4"/>
+  <circle cx="32" cy="32" r="24" fill="#2A313B" stroke="#63D0CA" stroke-width="5" stroke-dasharray="136 14" stroke-dashoffset="-3"/>
+  <text x="32" y="38" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="18" fill="#ffffff" letter-spacing="-0.5">LT</text>
+  <circle cx="32" cy="57" r="3.5" fill="#e2e8f0"/>
 </svg>
