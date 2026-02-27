@@ -1,15 +1,10 @@
 ---
 /**
- * BaseLayout.astro Ã¢ÂÂ Master page wrapper
- * Version: 2.0
- * 
- * CHANGES FROM v1.0:
- *   - Header: dark glassmorphism (was white + border)
- *   - Nav CTA: miniature steel chrome bar (was flat green btn--phone)
- *   - Utility bar: simplified to "24/7 Live Answering"
- *   - Footer: teal accent (was orange)
- *   - Logo: icon + "247" + "Local Trades" layout
- *   - chrome-glint class on nav CTA for page-wide glint participation
+ * BaseLayout.astro — Master page wrapper
+ * Version: 2.1
+ *
+ * CHANGES FROM v2.0:
+ * - Mobile header: certified logo PNG replaces SVG/text logo
  */
 
 interface Props {
@@ -62,7 +57,8 @@ Licensed &amp; Insured <img src="/icon.svg" alt="" aria-hidden="true" style="wid
   <header class="site-header">
     <div class="site-header__inner">
       <a href="/" class="site-header__logo">
-        <div style="display:flex;align-items:center;gap:12px;">
+        <!-- Desktop logo: SVG icon + text -->
+        <div class="logo-desktop" style="display:flex;align-items:center;gap:12px;">
           <svg width="50" height="50" viewBox="0 0 50 50" style="flex-shrink:0;" aria-hidden="true">
             <circle cx="25" cy="25" r="22" fill="none" stroke="#5a6478" stroke-width="3"/>
             <circle cx="25" cy="25" r="16.5" fill="none" stroke="#63D0CA" stroke-width="4.5" stroke-dasharray="93 12" stroke-dashoffset="-3" stroke-linecap="round"/>
@@ -78,6 +74,8 @@ Licensed &amp; Insured <img src="/icon.svg" alt="" aria-hidden="true" style="wid
             <span style="font-size:10px;font-weight:600;color:#ffffff;letter-spacing:0.1em;line-height:1;text-transform:uppercase;">We&apos;ve got your neighborhood covered.</span>
           </div>
         </div>
+        <!-- Mobile logo: certified PNG -->
+        <img src="/logo-certified.png" alt="247 Local Trades Certified" class="logo-mobile">
       </a>
       <nav class="site-header__nav">
         <a href="/service/">Request Service</a>
@@ -139,14 +137,20 @@ Licensed &amp; Insured <img src="/icon.svg" alt="" aria-hidden="true" style="wid
   /* nav-cta text: white default, gold on hover */
   .nav-cta { color: #ffffff !important; white-space: nowrap !important; }
   .nav-cta .nav-text { color: inherit; }
-.nav-cta:hover { color: #fce88a; transition: color 0.2s ease; }
+  .nav-cta:hover { color: #fce88a; transition: color 0.2s ease; }
   /* header height with tagline */
   .site-header__inner { height: 68px; }
-  /* mobile: hide utility bar, shrink logo */
+  /* mobile: hide utility bar, show certified logo */
   @media (max-width: 768px) {
     .utility-header { display: none; }
-    .site-header__logo svg { height: 34px; }
     .site-header__inner { height: 56px; }
+    .logo-desktop { display: none !important; }
+    .logo-mobile { display: block !important; height: 40px; width: auto; }
+  }
+  /* desktop: hide mobile logo */
+  @media (min-width: 769px) {
+    .logo-mobile { display: none !important; }
+    .logo-desktop { display: flex !important; }
   }
 </style>
 </body>
