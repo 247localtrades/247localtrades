@@ -1,0 +1,46 @@
+---
+interface FAQItem { question: string; answer: string; }
+interface HowToStep { name: string; text: string; }
+interface Props { mode?: 'faq' | 'howto'; items?: FAQItem[]; steps?: HowToStep[]; howtoName?: string; howtoDesc?: string; title?: string; }
+const { mode = 'faq', items = [], steps = [], howtoName = '', howtoDesc = '', title } = Astro.props;
+const sectionTitle = title || (mode === 'faq' ? 'Frequently Asked Questions' : 'Step-by-Step Guide');
+const faqSchema = mode === 'faq' ? { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map(i => ({'@type':'Question',name:i.question,acceptedAnswer:{'@type':'Answer',text:i.answer}})) } : null;
+const howtoSchema = mode === 'howto' ? { '@context': 'https://schema.org', '@type': 'HowTo', name: howtoName, description: howtoDesc, step: steps.map((s,i) => ({'@type':'HowToStep',position:i+1,name:s.name,text:s.text})) } : null;
+---
+<section class="faq-section" aria-label={sectionTitle}>
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+  {howtoSchema && <script type="application/ld+json" set:html={JSON.stringify(howtoSchema)} />}
+  <h2 class="faq-title">{sectionTitle}</h2>
+  {mode === 'faq' && items.length > 0 && (
+    <div class="faq-list">
+      {items.map((item,i) => (
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary class="faq-question" itemprop="name"><span>{item.question}</span><span class="chevron">▾</span></summary>
+          <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">{item.answer}</p></div>
+        </details>
+      ))}
+    </div>
+  )}
+  {mode === 'howto' && steps.length > 0 && (
+    <div class="howto-list">
+      {steps.map((s,i) => (
+        <div class="howto-step" itemscope itemprop="step" itemtype="https://schema.org/HowToStep">
+          <div class="step-num">{i+1}</div>
+          <div><h3 itemprop="name">{s.name}</h3><p itemprop="text">{s.text}</p></div>
+        </div>
+      ))}
+    </div>
+  )}
+</section>
+<style>
+  .faq-section{font-family:var(--font-body);padding-block:var(--space-3xl)}
+  .faq-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-lg)}
+  .faq-list{display:flex;flex-direction:column;gap:8px}
+  .faq-item{background:var(--brand-white);border:1px solid var(--brand-gray-light);border-radius:var(--radius-md);overflow:hidden}
+  .faq-item[open]{border-color:var(--brand-teal)}
+  .faq-question{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;cursor:pointer;font-weight:600;list-style:none}
+  .faq-question::-webkit-details-marker{display:none}
+  .chevron{color:var(--brand-teal);transition:transform 0.2s}
+  .faq-item[open] .chevron{transform:rotate(180deg)}
+  .faq-answer{padding:0 1.25rem 1rem;color:var(--text-secondary);font-size:0.9rem;line-height:1.6}
+</style>
