@@ -1,20 +1,10 @@
 ---
 /**
- * index.astro — Homepage
- * Version: 2.0
- * 
- * CHANGES FROM v1.0:
- *   - HeroCTA replaces PhoneCTA in hero (chrome metal bars)
- *   - Tagline uses new certified badge format
- *   - Trust badges below CTAs (green checks)
- *   - Recording disclosure in hero
- *   - PhoneCTA still used in bottom CTA section (non-hero context)
- *   - Brand colors: teal/blue (was orange)
+ * index.astro — Homepage v2.1
+ * Fix: correct CSS var names in bottom CTA section
  */
-
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroCTA from '../components/HeroCTA.astro';
-
 import ServiceChecker from '../components/ServiceChecker.astro';
 
 const schema = {
@@ -28,25 +18,24 @@ const schema = {
 };
 ---
 
-<BaseLayout title="247 Local Trades — Verified HVAC Contractors in Northwest Florida" description="24/7 emergency HVAC repair in Pensacola, Gulf Breeze, Milton, Navarre & Pace. Licensed, insured contractors. Call (850) 403-9797." schema={schema}>
+<BaseLayout
+  title="247 Local Trades — Verified HVAC Contractors in Northwest Florida"
+  description="24/7 emergency HVAC repair in Pensacola, Gulf Breeze, Milton, Navarre & Pace. Licensed, insured contractors. Call (850) 403-9797."
+  schema={schema}
+>
 
   <section class="hero">
     <div class="hero__content">
       <span class="hero__tagline">247LocalTrades Certified &mdash; We've got your neighborhood covered</span>
-
       <h1>Emergency HVAC Service.<br>Verified Local Contractors.</h1>
-
       <p class="hero__subtitle">Your AC went out. You need someone you can trust — fast. We connect you with pre-verified, licensed contractors in minutes, not hours.</p>
-
       <HeroCTA />
-
       <div class="hero__trust">
         <span class="hero__trust-item"><span class="check">✓</span> Licensed</span>
         <span class="hero__trust-item"><span class="check">✓</span> Insured</span>
         <span class="hero__trust-item"><span class="check">✓</span> Background Checked</span>
         <span class="hero__trust-item"><span class="check">✓</span> 247LT Certified</span>
       </div>
-
       <div class="disclosure">Calls may be recorded for training and quality assurance.</div>
     </div>
   </section>
@@ -96,8 +85,8 @@ const schema = {
 
   <section class="section section--dark" style="text-align:center">
     <div class="container">
-      <h2 style="color:var(--white);margin-bottom:var(--space-md)">Your AC Can't Wait. Neither Can We.</h2>
-      <p style="color:var(--slate-600);max-width:500px;margin:0 auto var(--space-xl)">Call, text, or request service online.</p>
+      <h2 style="color:var(--brand-white);margin-bottom:var(--space-md)">Your AC Can't Wait. Neither Can We.</h2>
+      <p style="color:var(--brand-gray-text);max-width:500px;margin:0 auto var(--space-xl)">Call, text, or request service online.</p>
       <HeroCTA />
     </div>
   </section>
